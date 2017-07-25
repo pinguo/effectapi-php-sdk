@@ -1,0 +1,8 @@
+.DS_Store
+.swp
+.idea/
+composer.lock
+vendor
+.buildpath
+.project
+.settings/
