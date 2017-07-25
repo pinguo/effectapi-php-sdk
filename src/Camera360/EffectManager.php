@@ -155,7 +155,7 @@ final class EffectManager
         $url = Conf::HOST . '/pics/' . $key . '/effects';
         $contentType = 'application/x-www-form-urlencoded';
         
-        $authHeaders = $this->_authorization->authorization($url, $body, $contentType);
+        $authHeaders = $this->_authorization->doAuth($url, $body, $contentType);
         $response = Client::post($url, $body, $authHeaders);
         if (!$response->ok()) {
             throw new \Exception($response->getMessage(), $response->getHttpcode());
