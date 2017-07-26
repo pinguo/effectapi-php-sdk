@@ -3,7 +3,7 @@ namespace Camera360\Http;
 
 /**
  * HTTP请求类
- * 
+ *
  * @author zhanglu <zhanglu@camera360.com>
  *
  */
@@ -12,23 +12,23 @@ class Request
     /**
      * @var string target URL.
      */
-    private $_url;
+    private $url;
     /**
      * @var string request method.
      */
-    private $_method = 'get';
+    private $method = 'get';
     /**
      * @var array request headers.
      */
-    private $_headers = array();
+    private $headers = array();
     /**
      * @var array request options.
      */
-    private $_options = array();
+    private $options = array();
     /**
      * @var mixed request body
      */
-    private $_body;
+    private $body;
 
     /**
      * Sets target URL.
@@ -37,7 +37,7 @@ class Request
      */
     public function setUrl($url)
     {
-        $this->_url = $url;
+        $this->url = $url;
         return $this;
     }
 
@@ -47,7 +47,7 @@ class Request
      */
     public function getUrl()
     {
-        return $this->_url;
+        return $this->url;
     }
 
     /**
@@ -56,7 +56,7 @@ class Request
      */
     public function setMethod($method)
     {
-        $this->_method = $method;
+        $this->method = $method;
         return $this;
     }
 
@@ -65,7 +65,7 @@ class Request
      */
     public function getMethod()
     {
-        return $this->_method;
+        return $this->method;
     }
     
     /**
@@ -74,7 +74,7 @@ class Request
      */
     public function setHeaders($headers)
     {
-        $this->_headers = $headers;
+        $this->headers = $headers;
         return $this;
     }
     
@@ -83,7 +83,7 @@ class Request
      */
     public function getHeaders()
     {
-        return $this->_headers;
+        return $this->headers;
     }
     
     /**
@@ -91,13 +91,13 @@ class Request
      */
     public function getHttpheader()
     {
-        if (empty($this->_headers)) {
+        if (empty($this->headers)) {
             return null;
         }
         
         $headers = array();
-        foreach ($this->_headers as $key => $value) {
-            $headers[] = "$key: $val";
+        foreach ($this->headers as $key => $value) {
+            $headers[] = "$key: $value";
         }
         return $headers;
     }
@@ -108,7 +108,7 @@ class Request
      */
     public function setOptions($options)
     {
-        $this->_options = $options;
+        $this->options = $options;
         return $this;
     }
 
@@ -117,7 +117,7 @@ class Request
      */
     public function getOptions()
     {
-        return $this->_options;
+        return $this->options;
     }
     
     /**
@@ -126,7 +126,7 @@ class Request
      */
     public function setBody($body)
     {
-        $this->_body = $body;
+        $this->body = $body;
         return $this;
     }
     
@@ -136,6 +136,6 @@ class Request
      */
     public function getBody()
     {
-        return $this->_body;
+        return $this->body;
     }
 }

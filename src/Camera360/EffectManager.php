@@ -6,25 +6,25 @@ use Camera360\Http\Client;
 
 /**
  * 特效处理类
- * 
+ *
  * 特效处理步骤：
  * 1. 构造授权类 Authorization
  * 2. 构造特效处理类 EffectManager
  * 3. 调用特效处理类的上传图片接口 upload | uploadFile
  * 4. 调用特效处理类的增加特效滤镜接口 addFilter
- * 
+ *
  * 注意：在第3步调用特效处理类的上传图片接口时，传入滤镜相关参数，会自动触发特效处理，并返回特效图.
- * 
- * @example 
+ *
+ * @example
  * use Camera360\Authorization;
  * use Camera360\EffectManager;
- * 
+ *
  * $authorization = new Authorization($accessKey, $secretKey);
  * $effectManager = new EffectManager($authorization);
  * $uploadRet = $effectManager->upload($image);
  * // $uploadRet = $effectManager->uploadFile($filePath);
  * $effectPicUrl = $effectManager->addFilter($uploadRet['key'], $filter);
- * 
+ *
  * @author zhanglu <zhanglu@camera360.com>
  *
  */
@@ -33,7 +33,7 @@ final class EffectManager
     /**
      * @var Authorization
      */
-    private $_authorization;
+    private $authorization;
     
     public $key;
     
@@ -42,14 +42,14 @@ final class EffectManager
      */
     public function __construct(Authorization $authorization)
     {
-        $this->_authorization = $authorization;
+        $this->authorization = $authorization;
     }
     
     /**
      * 上传图片的二进制流，上传成功后返回图片的唯一 Key，后续进行特效处理时作为传入参数。
      * 如果设置有效的 $filter 参数，那么上传图片后会自动触发特效处理流程。
      * 注意：上传的原图和特效图在服务器保存 1 天后随即删除
-     * 
+     *
      * @param string $data          上传二进制流
      * @param string $filter        滤镜名称
      * @param integer $strength     滤镜强度，取值范围 0 - 100
@@ -71,7 +71,7 @@ final class EffectManager
             $params = $this->makeFilterParams($filter, $strength, $rotateAngle, $mirrorX, $mirrorY);
             $uploadOnly = false;
         }
-        $uploadToken = $this->_authorization->uploadToken($uploadOnly);
+        $uploadToken = $this->authorization->uploadToken($uploadOnly);
         $this->key = $uploadToken->key;
         
         $uploadMgr = new UploadManager();
@@ -116,7 +116,7 @@ final class EffectManager
             $params = $this->makeFilterParams($filter, $strength, $rotateAngle, $mirrorX, $mirrorY);
             $uploadOnly = false;
         }
-        $uploadToken = $this->_authorization->uploadToken($uploadOnly);
+        $uploadToken = $this->authorization->uploadToken($uploadOnly);
         $this->key = $uploadToken->key;
         
         $uploadMgr = new UploadManager();
@@ -155,7 +155,7 @@ final class EffectManager
         $url = Conf::HOST . '/pics/' . $key . '/effects';
         $contentType = 'application/x-www-form-urlencoded';
         
-        $authHeaders = $this->_authorization->authorization($url, $body, $contentType);
+        $authHeaders = $this->authorization->doAuth($url, $body, $contentType);
         $response = Client::post($url, $body, $authHeaders);
         if (!$response->ok()) {
             throw new \Exception($response->getMessage(), $response->getHttpcode());

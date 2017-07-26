@@ -5,7 +5,7 @@ use Camera360\Http\Client;
 
 /**
  * 实现身份认证的授权类
- * 
+ *
  * @author zhanglu <zhanglu@camera360.com>
  *
  */
@@ -64,7 +64,7 @@ final class Authorization
         }
         $url = Conf::HOST . '/uploadtoken?' . http_build_query($query);
         
-        $authHeaders = $this->authorization($url);
+        $authHeaders = $this->doAuth($url);
         $response = Client::get($url, null, $authHeaders);
         if (!$response->ok()) {
             throw new \Exception($response->getMessage(), $response->getHttpcode());
@@ -126,7 +126,7 @@ final class Authorization
 //         return $policy;
 //     }
 
-    public function authorization($url, $body = null, $contentType = null)
+    public function doAuth($url, $body = null, $contentType = null)
     {
         $authorization = 'Camera360 ' . $this->signRequest($url, $body, $contentType);
         return array('Authorization' => $authorization);

@@ -3,7 +3,7 @@ namespace Camera360\Http;
 
 /**
  * HTTP响应类
- * 
+ *
  * @author zhanglu <zhanglu@camera360.com>
  *
  */
@@ -12,24 +12,24 @@ class Response
     /**
      * @var int httpcode.
      */
-    private $_httpcode;
+    private $httpcode;
     /**
      * @var float response cost time.
      */
-    private $_duration;
+    private $duration;
     /**
      * @var array response headers.
      */
-    private $_headers = array();
+    private $headers = array();
     /**
      * @var string response origin body
      */
-    private $_body;
+    private $body;
     
     /**
      * @var array response parsed body
      */
-    private $_data;
+    private $data;
     
     /**
      * @param int $httpcode
@@ -37,7 +37,7 @@ class Response
      */
     public function setHttpcode($httpcode)
     {
-        $this->_httpcode = $httpcode;
+        $this->httpcode = $httpcode;
         return $this;
     }
     
@@ -47,7 +47,7 @@ class Response
      */
     public function getHttpcode()
     {
-        return $this->_httpcode;
+        return $this->httpcode;
     }
     
     /**
@@ -56,7 +56,7 @@ class Response
      */
     public function setDuration($duration)
     {
-        $this->_duration = $duration;
+        $this->duration = $duration;
         return $this;
     }
     
@@ -65,7 +65,7 @@ class Response
      */
     public function getDuration()
     {
-        return $this->_duration;
+        return $this->duration;
     }
     
     /**
@@ -74,7 +74,7 @@ class Response
      */
     public function setHeaders($headers)
     {
-        $this->_headers = $headers;
+        $this->headers = $headers;
         return $this;
     }
     
@@ -83,7 +83,7 @@ class Response
      */
     public function getHeaders()
     {
-        return $this->_headers;
+        return $this->headers;
     }
     
     /**
@@ -92,7 +92,7 @@ class Response
      */
     public function setBody($body)
     {
-        $this->_body = $body;
+        $this->body = $body;
         return $this;
     }
     
@@ -102,25 +102,25 @@ class Response
      */
     public function getBody()
     {
-        return $this->_body;
+        return $this->body;
     }
     
     /**
-     * Returns the parsed body. 
+     * Returns the parsed body.
      * @return array
      */
     public function getData()
     {
-        if ($this->_data === null) {
-            if (!empty($this->_body) && $this->isJson()) {
-                $this->_data = @json_decode($this->_body, true);
+        if ($this->data === null) {
+            if (!empty($this->body) && $this->isJson()) {
+                $this->data = @json_decode($this->body, true);
                 $error = json_last_error();
                 if ($error !== JSON_ERROR_NONE) {
                     throw new \Exception(json_last_error_msg(), $error);
                 }
             }
         }
-        return $this->_data;
+        return $this->data;
     }
     
     /**
@@ -128,7 +128,7 @@ class Response
      */
     public function ok()
     {
-        return $this->statusCode >= 200 && $this->statusCode < 300;
+        return is_int($this->httpcode) && $this->httpcode >= 200 && $this->httpcode < 300;
     }
     
     /**
@@ -146,8 +146,8 @@ class Response
     
     private function isJson()
     {
-        return is_array($this->_headers)
-        && array_key_exists('Content-Type', $this->_headers)
-        && strpos($headers['Content-Type'], 'application/json') === 0;
+        return is_array($this->headers)
+        && array_key_exists('Content-Type', $this->headers)
+        && strpos($this->headers['Content-Type'], 'application/json') === 0;
     }
 }

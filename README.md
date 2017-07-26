@@ -43,6 +43,7 @@ use Camera360\EffectManager;
 
 ## FAQ
 * 内部发生错误，都将抛出异常，请根据实际处理场景来捕获异常。
+* API 的使用 demo 可以参考 [单元测试](https://github.com/pinguo/effectapi-php-sdk/blob/master/tests)。
 
 ## 联系我们
 
