@@ -2,7 +2,7 @@
 namespace Camera360;
 
 /**
- * 
+ *
  * @author zhanglu <zhanglu@camera360.com>
  *
  */

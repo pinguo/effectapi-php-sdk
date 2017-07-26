@@ -3,11 +3,12 @@ namespace Camera360;
 
 /**
  * 上传凭证实体
- * 
+ *
  * @author zhanglu <zhanglu@camera360.com>
  *
  */
-class UploadToken {
+class UploadToken
+{
     /**
      * @var string
      */
@@ -34,4 +35,3 @@ class UploadToken {
         }
     }
 }
-

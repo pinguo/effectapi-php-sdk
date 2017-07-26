@@ -5,13 +5,14 @@ use Camera360\Conf;
 
 /**
  * 实现HTTP客户端
- * 
+ *
  * @author zhanglu <zhanglu@camera360.com>
  *
  */
-class Client {
+class Client
+{
     
-    private static $_ua;
+    private static $ua;
     
     /**
      * Creates 'GET' request.
@@ -110,9 +111,10 @@ class Client {
         $options[CURLOPT_FOLLOWLOCATION] = true;
         $options[CURLOPT_USERAGENT] = self::userAgent();
         $options[CURLOPT_URL] = $request->getUrl();
-        $options[CURLOPT_HTTPHEADER] = $request->getHttpheader();
+        $headers = $request->getHttpheader();
+        !empty($headers) && $options[CURLOPT_HTTPHEADER] = $headers;
         $responseHeaders = array();
-        $options[CURLOPT_HEADERFUNCTION] = function($resource, $headerString) use (&$responseHeaders) {
+        $options[CURLOPT_HEADERFUNCTION] = function ($resource, $headerString) use (&$responseHeaders) {
             $header = trim($headerString, "\n\r");
             if (strlen($header) > 0) {
                 $kv = explode(':', $header, 2);
@@ -146,13 +148,13 @@ class Client {
         $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
         
-        $response = $this->createResponse($httpcode, $duration, $responseHeaders, $responseBody);
+        $response = self::createResponse($httpcode, $duration, $responseHeaders, $responseBody);
         return $response;
     }
     
     private static function userAgent()
     {
-        if (!self::$_ua) {
+        if (!self::$ua) {
             $sdkInfo = "Camera360PHP/" . Conf::SDK_VER;
             
             $systemInfo = php_uname("s");
@@ -162,9 +164,8 @@ class Client {
             
             $phpVer = phpversion();
             
-            self::$_ua = "$sdkInfo $envInfo PHP/$phpVer";
+            self::$ua = "$sdkInfo $envInfo PHP/$phpVer";
         }
-        return self::$_ua;
+        return self::$ua;
     }
 }
-

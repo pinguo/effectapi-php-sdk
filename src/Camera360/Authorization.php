@@ -5,7 +5,7 @@ use Camera360\Http\Client;
 
 /**
  * 实现身份认证的授权类
- * 
+ *
  * @author zhanglu <zhanglu@camera360.com>
  *
  */
