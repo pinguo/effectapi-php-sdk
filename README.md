@@ -30,11 +30,11 @@ use Camera360\EffectManager;
      * 调用上传接口的其他方式
      */
     // 上传图片二进制流，并自动触发特效处理流程
-    // $uploadRet = $effectManager->upload($image, filter);
+    // $uploadRet = $effectManager->upload($image, $filter);
     // 上传图片文件
     // $uploadRet = $effectManager->uploadFile($filePath);
     // 上传图片文件，并自动触发特效处理流程
-    // $uploadRet = $effectManager->uploadFile($filePath, filter);
+    // $uploadRet = $effectManager->uploadFile($filePath, $filter);
     
     // 调用特效处理类的增加特效滤镜接口
     $effectPicUrl = $effectManager->addFilter($uploadRet['key'], $filter);
@@ -47,11 +47,11 @@ use Camera360\EffectManager;
 
 ## 联系我们
 
-- 如果需要帮助，请直接向 <zhanglu@camera360.com> 发送邮件
-- 更详细的文档，见[官方文档站](https://sdk.camera360.com/views/index.html)
-- 如果发现了bug， 欢迎提交 [issue](https://github.com/pinguo/effectapi-php-sdk/issues)
-- 如果有功能需求，欢迎提交 [issue](https://github.com/pinguo/effectapi-php-sdk/issues)
-- 如果要提交代码，欢迎提交 pull request
+* 如果需要帮助，请直接向 <zhanglu@camera360.com> 发送邮件
+* 更详细的文档，见[官方文档站](https://sdk.camera360.com/views/index.html)
+* 如果发现了bug， 欢迎提交 [issue](https://github.com/pinguo/effectapi-php-sdk/issues)
+* 如果有功能需求，欢迎提交 [issue](https://github.com/pinguo/effectapi-php-sdk/issues)
+* 如果要提交代码，欢迎提交 pull request
 
 ## 代码许可
 
