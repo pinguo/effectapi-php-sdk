@@ -13,6 +13,9 @@ $ composer require pinguo/effectapi-php-sdk
 ## 运行环境
 PHP版本：cURL extension, 5.3.3+
 
+## 用途
+利用Camera360最先进的图像处理技术，给图片添加上百款滤镜，支持的滤镜参考 [滤镜列表](https://github.com/pinguo/effectapi-php-sdk/blob/master/滤镜列表.md)
+
 ## 使用方法
 ```php
 use Camera360\Authorization;
@@ -28,6 +31,7 @@ use Camera360\EffectManager;
     
     /**
      * 调用上传接口的其他方式
+     * 参数 $filter 是滤镜对应的枚举值
      */
     // 上传图片二进制流，并自动触发特效处理流程
     // $uploadRet = $effectManager->upload($image, $filter);
