@@ -4,7 +4,9 @@
 ## SDK介绍
 PHP版本：cURL extension, 5.3.2+
 
-利用Camera360最先进的图像处理技术，给图片添加上百款滤镜，支持的滤镜参考 [滤镜列表](https://github.com/pinguo/effectapi-php-sdk/blob/master/滤镜列表.md)。
+利用Camera360最先进的图像处理技术，给图片添加上百款滤镜，支持的滤镜参考[滤镜列表][filters]。
+
+**特别声明：**所有上传的图片和特效图都只会在服务器保存 **1天**，**1天** 后自动删除没有备份。
 
 ## 安装
 通过 [Composer][]，这是推荐的方式。SDK 包已经放到这里 [`pinguo/effectapi-php-sdk`](https://packagist.org/packages/pinguo/effectapi-php-sdk)。
@@ -79,6 +81,8 @@ $uploadRet = $effectManager->upload($image);
 $effectPicUrl = $effectManager->addFilter($uploadRet['key'], $filter);
 ```
 
+说明：字段 `$filter` 参考[滤镜列表][filters]。
+
 ## 常见问题
 * 内部发生错误，都将抛出异常，请根据实际处理场景来捕获异常。
 * API 的使用 demo 可以参考 [单元测试](https://github.com/pinguo/effectapi-php-sdk/blob/master/tests)。
@@ -104,4 +108,4 @@ The MIT License (MIT).详情见 [License文件](https://github.com/pinguo/effect
 
 [Composer]: https://getcomposer.org/
 [Composer_cn]: https://docs.phpcomposer.com/
-
+[filters]: https://github.com/pinguo/effectapi-php-sdk/blob/master/滤镜列表.md
