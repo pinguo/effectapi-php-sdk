@@ -2,8 +2,7 @@
 ## Schema
 没有特别说明的情况下，API采用`HTTPS`协议，返回数据格式为`JSON`。
 
-* API中国大陆域名为 `https://effectapi.camera360.com`
-* API海外域名为 `https://effectapi.360in.com`
+* API域名为 `https://effectapi.camera360.com`
 * 图片资源下载域名为 `https://effect.c360dn.com`
 
 ## 安全机制
