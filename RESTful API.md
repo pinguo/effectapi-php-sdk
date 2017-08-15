@@ -32,13 +32,16 @@
 
 		sign = hmac_sha1(signingStr, "<SecretKey>")
 
-3. 对签名进行 `URL安全的Base64` 编码：
+3. 对签名进行 [URL安全的Base64编码](#security-urlsafebase64encode)：
 
 		encodedSign = urlsafe_base64_encode(sign)
 
 4. 将 `AccessKey` 和 `encodedSign` 用英文符号 `:` 连接起来：
 
 		accessToken = "<AccessKey>:<encodedSign>"
+
+#### <a name="security-urlsafebase64encode"></a>URL安全的Base64编码
+URL安全的Base64编码适用于以URL方式传递Base64编码结果的场景。该编码方式的基本过程是先将内容以Base64格式编码为字符串，然后检查该结果字符串，将字符串中的加号 `+` 换成中划线 `-`，并且将斜杠 `/` 换成下划线 `_`。
 		
 #### 示例
 	# 假设有如下的请求：
