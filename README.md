@@ -6,7 +6,7 @@ PHP版本：cURL extension, 5.3.2+
 
 利用Camera360最先进的图像处理技术，给图片添加上百款滤镜，支持的滤镜参考[滤镜列表][filters]。
 
-**特别声明：**所有上传的图片和特效图都只会在服务器保存 **1天**，**1天** 后自动删除没有备份。
+特别声明：所有上传的图片和特效图都只会在服务器保存 **1天**，**1天** 后自动删除没有备份。
 
 ## 安装
 通过 [Composer][]，这是推荐的方式。SDK 包已经放到这里 [`pinguo/effectapi-php-sdk`](https://packagist.org/packages/pinguo/effectapi-php-sdk)。
