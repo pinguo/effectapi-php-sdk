@@ -83,6 +83,7 @@ URL安全的Base64编码适用于以URL方式传递Base64编码结果的场景�
 上传凭证有效期为 1 小时，失效后会返回`401`表示权限认证失败。
 
 	GET /uploadtoken
+	Content-Type: application/x-www-form-urlencoded
 
 **授权方式**
 
@@ -119,6 +120,7 @@ uploadOnly | int | 否 | 是否只是上传。取值范围 0 - 1，默认值为 
 上传图片到服务器，原图大小不超过 5MB，在服务器保存 1 天后随即删除。生成的特效图，同样只保存 1 天。
 
 	POST :uphost
+	Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 	
 `:uphost`是[获取上传凭证](#api-uploadtoken)接口返回结果中的`uphost`字段。
 	
@@ -175,6 +177,7 @@ x:mirrorY     | int    | 否 | 垂直翻转。取值范围 0 - 1，默认值为 
 生成的特效图只保存 1 天。切记只能在上传图片之后才能调用特效处理接口，否则会返回HTTP错误码`404`。
 
 	POST /pics/:key/effects
+	Content-Type: application/x-www-form-urlencoded
 	
 `:key`是[获取上传凭证](#api-uploadtoken)接口返回结果中的`key`字段。
 	
